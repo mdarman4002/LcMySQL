@@ -1,0 +1,5 @@
+
+SELECT name FROM Customer where ifnull (referee_id,1) != 2;
+
+-----------others-----------------
+select name from Customer where referee_id is null or referee_id != 2;
