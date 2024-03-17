@@ -1,0 +1,8 @@
+# Write your MySQL query statement below
+with c as
+(select * , DATE_ADD(recordDate, Interval-1 Day)
+as yesterdays_date, lag(recordDate) over(order by recordDate) as prev_recordDate, lag(temperature) over(order by recordDate) as prev_temp from weather)
+
+select id from c
+where yesterdays_date = prev_recordDate
+and temperature > prev_temp;
